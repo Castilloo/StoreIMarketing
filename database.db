@@ -1,0 +1,270 @@
+CREATE DATABASE IMarketing;
+
+CREATE TABLE Images(
+    id_images INT IDENTITY(1,1) PRIMARY KEY,
+    url_1 VARCHAR(100),
+    url_2 VARCHAR(100),
+    url_3 VARCHAR(100),
+    url_4 VARCHAR(100),
+    url_5 VARCHAR(100),
+);
+
+CREATE TABLE Categories(
+    id_category INT IDENTITY(1,1) PRIMARY KEY,
+    [name] VARCHAR(100)
+    );
+
+CREATE TABLE Products(
+    id_product INT IDENTITY(1,1) PRIMARY KEY,
+    name VARCHAR(100),
+    brand VARCHAR(30),
+    descripcion VARCHAR(200),
+    is_new BIT,
+    quantity INT,
+    price DECIMAL(10, 2),
+    id_images INT,
+    id_category INT,
+    FOREIGN KEY(id_images) REFERENCES Images(id_images),
+    FOREIGN KEY(id_category) REFERENCES Categories(id_category)
+);
+
+CREATE TABLE Sellers(
+    id_seller INT IDENTITY(1,1) PRIMARY KEY,
+    name VARCHAR(50),
+    phone VARCHAR(20),
+    email VARCHAR(50),
+    address VARCHAR(100),
+    city VARCHAR(50),
+    department VARCHAR(50),
+    country VARCHAR (50),
+    is_good_assessment BIT,
+);
+
+CREATE TABLE Sales(
+    id_sale INT IDENTITY(1,1) PRIMARY KEY,
+    id_seller INT,
+    id_product INT,
+    quantity_sold INT,
+    sale_amount DECIMAL(15, 2),
+    sale_date DATE,
+    FOREIGN KEY(id_seller) REFERENCES Sellers(id_seller),
+    FOREIGN KEY(id_product) REFERENCES Products(id_product)
+);
+
+INSERT INTO Sellers ([name], phone, email, [address], city, department, country, is_good_assessment)
+VALUES 
+    ('Distribuidora 1', '76675899', 'distribuidora@correo.com', 'Calle falsa 123', 'Pereira', 'Risaralda', 'Colombia', 1),
+    ('Almacen X', '733536', 'almacenx@correo.com', 'Calle perro 123', 'Pereira', 'Risaralda', 'Colombia', 1),
+    ('Electrónicas Y', '65161627', 'electronicay@correo.com', 'Avenida del puerco 123', 'Montería', 'Córdoba', 'Colombia', 0),
+    ('Juan Pérez', '123456789', 'juan@example.com', 'Calle Principal 123', 'Ciudad de México', 'Ciudad de México', 'México', 1),
+    ('María García', '987654321', 'maria@example.com', 'Avenida Secundaria 456', 'Bogotá', 'Cundinamarca', 'Colombia', 0),
+    ('Pedro López', '555555555', 'pedro@example.com', 'Plaza Central 789', 'Lima', 'Lima', 'Perú', 1),
+    ('Ana Martínez', '666666666', 'ana@example.com', 'Calle Principal 456', 'Buenos Aires', 'Buenos Aires', 'Argentina', 1),
+    ('Laura Rodríguez', '777777777', 'laura@example.com', 'Avenida Principal 789', 'Madrid', 'Comunidad de Madrid', 'España', 0);
+    
+
+INSERT INTO Categories ([name])
+VALUES ('Electrónica'),
+       ('Ropa'),
+       ('Hogar'),
+       ('Deportes'),
+       ('Libros');
+
+INSERT INTO Images (Url_1, Url_2, Url_3, Url_4, Url_5)
+VALUES 
+    ('/images/celular1.jpg',
+     '/images/celular2.jpg',
+     '/images/celular3.jpg',
+     '/images/celular4.jpg',
+     '/images/celular5.jpg'),
+
+    ('/images/laptop1.jpg',
+     '/images/laptop2.jpg',
+     '/images/laptop3.jpg',
+     '/images/laptop4.jpg',
+     '/images/laptop5.jpg'),
+
+    ('/images/camiseta1.jpg',
+     '/images/camiseta2.jpg',
+     '/images/camiseta3.jpg',
+     '/images/camiseta4.jpg',
+     '/images/camiseta5.jpg'),
+
+    ('/images/jean1.jpg',
+     '/images/jean2.jpg',
+     '/images/jean3.jpg',
+     '/images/jean4.jpg',
+     '/images/jean5.jpg'),
+
+    ('/images/sofa1.jpg',
+     '/images/sofa2.jpg',
+     '/images/sofa3.jpg',
+     '/images/sofa4.jpg',
+     '/images/sofa5.jpg'),
+    
+    ('/images/mesa1.jpg',
+     '/images/mesa2.jpg',
+     '/images/mesa3.jpg',
+     '/images/mesa4.jpg',
+     '/images/mesa5.jpg'),
+
+    ('/images/futbol1.jpg',
+     '/images/futbol2.jpg',
+     '/images/futbol3.jpg',
+     '/images/futbol4.jpg',
+     '/images/futbol5.jpg'),
+
+    ('/images/raqueta1.jpg',
+     '/images/raqueta2.jpg',
+     '/images/raqueta3.jpg',
+     '/images/raqueta4.jpg',
+     '/images/raqueta5.jpg'),
+
+    ('/images/ciencia-ficcion1.jpg',
+     '/images/ciencia-ficcion2.jpg',
+     '/images/ciencia-ficcion3.jpg',
+     '/images/ciencia-ficcion4.jpg',
+     '/images/ciencia-ficcion5.jpg'),
+     
+    ('/images/cocina1.jpg',
+     '/images/cocina2.jpg',
+     '/images/cocina3.jpg',
+     '/images/cocina4.jpg',
+     '/images/cocina5.jpg'),
+    
+    ('/images/reloj1.jpg',
+     '/images/reloj2.jpg',
+     '/images/reloj3.jpg',
+     '/images/reloj4.jpg',
+     '/images/reloj5.jpg'),
+
+    ('/images/zapatos1.jpg',
+     '/images/zapatos2.jpg',
+     '/images/zapatos3.jpg',
+     '/images/zapatos4.jpg',
+     '/images/zapatos5.jpg'),
+
+    ('/images/toalla1.jpg',
+     '/images/toalla2.jpg',
+     '/images/toalla3.jpg',
+     '/images/toalla4.jpg',
+     '/images/toalla5.jpg'),
+
+    ('/images/pesas1.jpg',
+     '/images/pesas2.jpg',
+     '/images/pesas3.jpg',
+     '/images/pesas4.jpg',
+     '/images/pesas5.jpg'),
+     
+    ('/images/camara1.jpg',
+     '/images/camara2.jpg',
+     '/images/camara3.jpg',
+     '/images/camara4.jpg',
+     '/images/camara5.jpg'),
+
+    ('/images/morral1.jpg',
+     '/images/morral2.jpg',
+     '/images/morral3.jpg',
+     '/images/morral4.jpg',
+     '/images/morral5.jpg'),
+
+    ('/images/sabana1.jpg',
+     '/images/sabana2.jpg',
+     '/images/sabana3.jpg',
+     '/images/sabana4.jpg',
+     '/images/sabana5.jpg'),
+
+    ('/images/bike1.jpg',
+     '/images/bike2.jpg',
+     '/images/bike3.jpg',
+     '/images/bike4.jpg',
+     '/images/bike5.jpg'),
+
+    ('/images/teclado1.jpg',
+     '/images/teclado2.jpg',
+     '/images/teclado3.jpg',
+     '/images/teclado4.jpg',
+     '/images/teclado5.jpg'),
+
+    ('/images/botas1.jpg',
+     '/images/botas2.jpg',
+     '/images/botas3.jpg',
+     '/images/botas4.jpg',
+     '/images/botas5.jpg'),
+     
+    ('/images/espejo1.jpg',
+     '/images/espejo2.jpg',
+     '/images/espejo3.jpg',
+     '/images/espejo4.jpg',
+     '/images/espejo5.jpg'),
+    
+    ('/images/basket1.jpg',
+     '/images/basket2.jpg',
+     '/images/basket3.jpg',
+     '/images/basket4.jpg',
+     '/images/basket5.jpg'),
+
+    ('/images/historia1.jpg',
+     '/images/historia2.jpg',
+     '/images/historia3.jpg',
+     '/images/historia4.jpg',
+     '/images/historia5.jpg');
+
+
+
+
+INSERT INTO Products (name, brand, description, is_new, quantity, price, id_images, id_category)
+VALUES 
+    ('Teléfono móvil', 'Samsung', 'Teléfono móvil de última generación', 1, 50, 599.99, 1, 1),
+    ('Laptop', 'Dell', 'Laptop ultradelgada con pantalla táctil', 1, 30, 899.99, 2, 1),
+    ('Camiseta', 'Nike', 'Camiseta deportiva de algodón', 1, 100, 29.99, 3, 2),
+    ('Pantalón', 'Levis', 'Pantalón vaquero de corte recto', 1, 80, 49.99, 4, 2),
+    ('Sofá', 'Ikea', 'Sofá modular de tres plazas', 0, 10, 399.99, 5, 3),
+    ('Mesa de comedor', 'Muebles XYZ', 'Mesa de comedor extensible de madera', 1, 20, 299.99, 6, 3),
+    ('Balón de fútbol', 'Adidas', 'Balón de fútbol tamaño oficial', 1, 50, 19.99, 7, 4),
+    ('Raqueta de tenis', 'Wilson', 'Raqueta de tenis profesional', 1, 30, 129.99, 8, 4),
+    ('Libro de ciencia ficción', 'Editorial ABC', 'Novela de ciencia ficción best-seller', 1, 200, 9.99, 9, 5),
+    ('Libro de cocina', 'Chef Juan', 'Recetario con las mejores recetas de cocina', 1, 150, 14.99, 10, 5),
+    
+    ('Reloj inteligente', 'Apple', 'Reloj inteligente con pantalla Retina', 1, 50, 299.99, 11, 1),
+    ('Zapatos deportivos', 'Reebok', 'Zapatos deportivos para correr', 1, 70, 79.99, 12, 2),
+    ('Toalla de baño', 'Cotton Soft', 'Toalla de baño suave y absorbente', 1, 120, 9.99, 13, 3),
+    ('Set de pesas', 'Gym Master', 'Set de pesas de 20 kg con barra y discos', 1, 40, 49.99, 14, 4),
+    ('Cámara digital', 'Canon', 'Cámara digital compacta de 20 MP', 1, 25, 199.99, 15, 1),
+    ('Mochila escolar', 'Eastpak', 'Mochila escolar resistente y duradera', 0, 90, 39.99, 16, 2),
+    ('Juego de sábanas', 'Dream Comfort', 'Juego de sábanas de microfibra', 1, 60, 29.99, 17, 3),
+    ('Bicicleta de montaña', 'Trek', 'Bicicleta de montaña de aluminio', 1, 15, 499.99, 18, 4),
+    ('Teclado inalámbrico', 'Logitech', 'Teclado inalámbrico con teclas retroiluminadas', 1, 40, 69.99, 19, 1),
+    ('Botas de invierno', 'Timberland', 'Botas de invierno impermeables', 1, 50, 99.99, 20, 2),
+    
+    ('Espejo de pared', 'Decoración Moderna', 'Espejo de pared rectangular', 1, 35, 79.99, 21, 3),
+    ('Pelota de baloncesto', 'Spalding', 'Pelota de baloncesto oficial de la NBA', 1, 60, 29.99, 22, 4),
+    ('Libro de historia', 'Editorial XYZ', 'Libro de historia antigua', 1, 100, 19.99, 23, 5);
+
+INSERT INTO Sales(id_seller, id_product, quantity_sold, sale_amount, sale_date)
+VALUES 
+    (3, 1, 20, 11999.80, '2024-12-30'),
+    (3, 2, 5, 4499.95, '2024-03-12'),
+    (4, 3, 10, 299.99, '2024-04-10'),
+    (5, 4, 10, 499.90, '2024-05-15'),
+    (1, 5, 1, 399.99, '2024-07-17'),
+    (1, 6, 4, 1199.96, '2024-11-28'),
+    (6, 7, 1, 19.99, '2022-11-29'),
+    (6, 8, 11, 59.98, '2023-07-31'),
+    (2, 9, 22, 59.98, '2023-05-26'),
+    (2, 10, 18, 199.96, '2023-03-02'),
+
+    (3, 11, 3, 239.97, '2024-04-01'),
+    (5, 12, 4, 39.96, '2023-02-01'),
+    (5, 13, 10, 399.90, '2024-01-09'),
+    (1, 14, 2, 39.98, '2023-01-17'),
+    (3, 15, 12, 1559.88, '2024-03-18'),
+    (8, 16, 5, 249.95, '2024-03-18'),
+    (2, 17, 1, 499.99, '2024-03-18'),
+    (2, 18, 10, 999.90, '2024-03-18'),
+    (3, 19, 10, 299.90, '2024-03-18'),
+    (7, 20, 12, 359.88, '2024-03-18'),
+
+    (2, 21, 8, 79.92, '2024-03-18'),
+    (4, 22, 9, 179.91, '2024-03-18'),
+    (5, 23, 9, 179.91, '2024-03-18');
